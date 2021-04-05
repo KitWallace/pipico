@@ -8,6 +8,7 @@ class Circular_Array():
         self._front= (self._front + 1) % self._size
         self._list[self._front]=val
      
+    @property
     def top(self):
         if self._front == -1 :
             return None
@@ -18,29 +19,21 @@ class Circular_Array():
     def size(self):
         return self._size
     
-    @property
-    def _back(self) :
-        if (self._front == -1):
-            return -1
-        else:
-            next = (self._front + 1) % self._size
-            if self._list[next] != None:
-                return next
-            else :
-                return 0
+    
     @property
     def length(self) :
-        if self._back > self._front :
-            return self._size
-        else :
-            return self._front + 1
+        l=  (self._front + 1 ) % self._size
+        if self._list[l] == None :
+            return l
+        return self.size
             
     def val(self,i) :
-        start = self._back
-        if (start == -1) :
-            return None
-        else :
-            j = (start + i) % self._size
-            return self._list[j]
+        j = self._front - i
+        if (j < 0) :
+            if self.length < self._size:
+                return None
+            j = self._size +  j
+        return self._list[j]
+        
             
         
