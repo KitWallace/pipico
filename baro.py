@@ -170,11 +170,10 @@ def graph_screen() :
     origin=980
     scale=1
     if history.length > 1 :
-#  0 is latest so need to start at the other end of the array and loop down to 0
-        for i in range(history.length-2,-1,-1) :
-           h=  int((history.val(i) - origin ) * scale)
-           line_bar(i,0,h)
-   
+        for i in range(0,history.length) :
+           j = history.length -1 - i
+           h=  int((history.val(j) - origin ) * scale)
+           line_bar(i,0,h)   
     oled.show()
     
 # mode button handling
