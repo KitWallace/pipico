@@ -27,7 +27,7 @@ history_interval_minutes = 12
 history_length =  int(24 * 60 / history_interval_minutes) 
 history = Circular_Array(history_length)
 history_interval_sec =  history_interval_minutes * 60  
-tendency_interval_index = 3 * 60 / history_interval_minutes   
+tendency_interval_index = int(3 * 60 / history_interval_minutes)   
 
 # read and refresh display interval in sec
 refresh_interval_sec=10 
