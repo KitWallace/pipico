@@ -1,4 +1,4 @@
-# see https://kitwallace.tumblr.com/post/687324479660130304/pi-pico-ships-barometer for further information
+#
 
 from machine import Pin, I2C, Timer
 from bmx280x import BMX280
@@ -88,26 +88,27 @@ def tendency(change) :
     rate = abs(change)
     if rate >0.1 :          
         if change  < 0:
-            direction = "Fall"
+            direction = "Falling"
         else :
-            direction = "Rise"
+            direction = "Rising"
                 
         if rate  > 0.1 and rate  <= 1.5 :
-            rate_qualifier =" slow"
+            rate_qualifier =" slowly"
         elif rate  > 1.5 and rate <= 3.5 :
             rate_qualifier=""
         elif rate  >3.5 and rate <= 6.0 :
-            rate_qualifier=" quick"
+            rate_qualifier=" quickly"
         elif rate >6.0 :
-            rate_qualifier=" v. fast"
+            rate_qualifier=" v. quickly"
             
         return direction + rate_qualifier 
     else :
         return "Steady"
+
 # displays
 def splash() :
     oled.clear()
-    oled.text("Ship's",10,1,32)
+    oled.text("Ship",10,1,32)
     oled.text("Barometer",10,35,16)
     oled.show()
 
@@ -133,7 +134,7 @@ def data_screen() :
     oled.text("{:.1f}".format(pressure),1,1,32)
     change = get_change()
     if change != None:
-        oled.text( "{:.1f}".format(change),1,35,32)
+        oled.text( "Change "+ "{:.1f}".format(change)+ " mb",1,35,16)
         oled.text(tendency(change),1,50,16) 
     oled.show()
 
@@ -225,3 +226,4 @@ while True:
         default_screen_deadline = now_sec + default_screen_interval_sec
 
     utime.sleep(refresh_interval_sec)
+
