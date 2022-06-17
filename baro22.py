@@ -1,4 +1,4 @@
-# see for further information
+# see https://kitwallace.tumblr.com/post/687324479660130304/pi-pico-ships-barometer for further information
 
 from machine import Pin, I2C, Timer
 from bmx280x import BMX280
